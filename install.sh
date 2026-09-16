@@ -25,7 +25,7 @@
 
 set -u
 
-CSQTT_REPO="redline-keen/csqttopenwrt"
+CSQTT_REPO="redline-keen/csqtt-openwrt"
 CSQTT_TAG="0.1"
 CSQTT_MIRROR=""
 CSQTT_LOCAL_BIN=""
