@@ -863,6 +863,7 @@ if [ "$CSQTT_START" = "1" ]; then
             warn "Проверьте журнал: $INIT_SCRIPT log"
             tail -n 10 "$LOG_FILE" 2>/dev/null
         fi
+    fi
 fi
 
 log "Готово. Управление: $INIT_SCRIPT start|stop|restart|status|log"
