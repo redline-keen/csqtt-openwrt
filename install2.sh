@@ -33,7 +33,7 @@
 
 set -u
 
-CSQTT_REPO="redline-keen/scqtt-openwrt"
+CSQTT_REPO="redline-keen/csqtt-openwrt"
 CSQTT_TAG="0.1"
 CSQTT_LOCAL_BIN=""
 CSQTT_VK_TOKEN=""
