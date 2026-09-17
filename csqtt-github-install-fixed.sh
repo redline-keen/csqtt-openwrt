@@ -35,9 +35,9 @@
 
 set -u
 
-CSQTT_REPO="amurcanov/csqtt"   # ← поменяйте на свой репозиторий, если выложили
+CSQTT_REPO="redline-keen/csqtt-openwrt"   # ← поменяйте на свой репозиторий, если выложили
                                #   роутерные бинарники в свой GitHub-релиз
-CSQTT_TAG=""
+CSQTT_TAG="0.2"
 CSQTT_LOCAL_BIN=""
 CSQTT_VK_TOKEN=""
 CSQTT_HASHES=""
