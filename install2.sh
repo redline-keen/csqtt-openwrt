@@ -439,6 +439,7 @@ cat > "$CSQTT_DIR/csqtt-run.sh" <<'EOF'
 DIR=$(dirname "$0")
 . "$DIR/csqtt.conf"
 umask 077
+LOG_FILE="$DIR/csqtt.log"
 
 : "${LISTEN:=127.0.0.1:9000}"
 : "${FINGERPRINT:=firefox}"
@@ -476,7 +477,7 @@ set -- "$@" --vk-hash-mode auto_js --vk-auth-mode auto_js
 FIFO="$DIR/bootstrap.fifo"
 [ -p "$FIFO" ] || mkfifo "$FIFO" || { echo "не удалось создать fifo"; exit 1; }
 printf 'VK_JS_BOOTSTRAP:%s\n' "$BOOTSTRAP" > "$FIFO" &
-exec "$@" < "$FIFO"
+exec "$@" < "$FIFO" >> "$LOG_FILE" 2>&1
 EOF
 chmod +x "$CSQTT_DIR/csqtt-run.sh"
 
@@ -742,9 +743,7 @@ start_service() {
     rm -f "$CSQTT_DIR/stopped" "$CSQTT_DIR/restarting"
     procd_open_instance
     procd_set_param command /bin/sh "$CSQTT_DIR/csqtt-run.sh"
-    procd_set_param respawn "\${threshold:-60}" "\${timeout:-5}" "\${retry:-0}"
-    procd_set_param stdout 1
-    procd_set_param stderr 1
+    procd_set_param respawn "${threshold:-60}" "${timeout:-5}" "${retry:-0}"
     procd_set_param file "$CSQTT_DIR/csqtt.conf"
     procd_close_instance
 }
