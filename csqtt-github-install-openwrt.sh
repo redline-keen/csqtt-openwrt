@@ -105,14 +105,14 @@ CSQTT — установка клиента CSQTT с GitHub на роутер Op
 HELP
 }
 
-CSQTT_REPO="amurcanov/csqtt"   # ← поменяйте на свой репозиторий, если выложили
+CSQTT_REPO="redline-keen/csqtt-openwrt"   # ← поменяйте на свой репозиторий, если выложили
                                #   роутерные бинарники в свой GitHub-релиз
                                #   (оттуда же берётся csqtt-config.yaml для mihomo)
-CSQTT_TAG=""
+CSQTT_TAG="0.1"
 CSQTT_LOCAL_BIN=""
 CSQTT_VK_TOKEN=""
 CSQTT_HASHES=""
-CSQTT_WORKERS=""
+CSQTT_WORKERS="162"
 CSQTT_START=1
 CSQTT_ROTATE=1
 CSQTT_WATCHDOG=1
