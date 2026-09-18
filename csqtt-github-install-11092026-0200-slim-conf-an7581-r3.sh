@@ -161,16 +161,32 @@ elf_magic_check() {
 }
 
 elf_class_check() {
-  # $1 = путь. Печатает "32"/"64"/"". 0 если файл не ELF.
   _f=$1
   [ -f "$_f" ] || return 1
+  # 1. Попытка через od
   if have_cmd od; then
     _c=$(od -An -tu1 -N1 -j4 "$_f" 2>/dev/null | tr -d ' \t\n')
     case "$_c" in
-      1) printf '32' ;;
-      2) printf '64' ;;
+      1) printf '32'; return 0 ;;
+      2) printf '64'; return 0 ;;
     esac
   fi
+  # 2. Фолбэк через hexdump / busybox hexdump
+  if have_cmd hexdump; then
+    _c=$(hexdump -s 4 -n 1 -e '1/1 "%d"' "$_f" 2>/dev/null)
+    case "$_c" in
+      1) printf '32'; return 0 ;;
+      2) printf '64'; return 0 ;;
+    esac
+  fi
+  # 3. Фолбэк через dd (работает везде в busybox)
+  _byte=$(dd if="$_f" bs=1 count=1 skip=4 2>/dev/null | od -An -tu1 2>/dev/null | tr -d ' \t\n')
+  case "$_byte" in
+    1) printf '32'; return 0 ;;
+    2) printf '64'; return 0 ;;
+  esac
+  # 4. Если ничего не распознало — на aarch64 почти гарантированно 64-бит
+  printf '64'
 }
 
 elf_machine_check() {
