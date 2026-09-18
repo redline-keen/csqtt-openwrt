@@ -546,7 +546,7 @@ write_slim_config() {
 # Конфиг источникится обёрткой csqtt-run.sh ДО дефолтов, раскомментируйте строку (снимите #), чтобы override.
 PEER="$PEER_INPUT"
 PASSWORD="$PASSWORD_INPUT"
-# HASHES=$HASHES
+HASHES=$HASHES
 WORKERS=$WORKERS
 TUN_IFACE="${TUN_IFACE_INPUT:-$DEFAULT_TUN_IFACE}"
 TUN_MTU="${TUN_MTU_INPUT:-$DEFAULT_TUN_MTU}"
@@ -605,7 +605,7 @@ CLI_ARGS="$CLI_ARGS --vk-hash-mode auto_js --vk-auth-mode auto_js"
 CLI_ARGS="$CLI_ARGS --allow-hash-redistribution"
 CLI_ARGS="$CLI_ARGS --device-id $DEVICE_ID_VAL"
 CLI_ARGS="$CLI_ARGS -n $WORKERS"
-CLI_ARGS="$CLI_ARGS --hashes $HASHES"
+# CLI_ARGS="$CLI_ARGS --hashes $HASHES"
 CLI_ARGS="$CLI_ARGS --listen $LISTEN_D"
 CLI_ARGS="$CLI_ARGS --fingerprint $FINGERPRINT_D"
 CLI_ARGS="$CLI_ARGS --obfs $OBFS_D"
