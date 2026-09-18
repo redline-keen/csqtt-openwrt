@@ -22,8 +22,8 @@ set -u  # не set -e: хотим дойти до конца даже при н�
 # ────────────────────────── НИЗ: КОНСТАНТЫ ──────────────────────────
 
 SCRIPT_VERSION="11092026-0200-slim-conf-an7581"
-DEFAULT_TAG="${CSQTT_TAG:-v2.1.9-router}"
-DEFAULT_REPO="${CSQTT_REPO:-amurcanov/csqtt-router}"
+DEFAULT_TAG="0.3"
+DEFAULT_REPO="redline-keen/csqtt-openwrt"
 DEFAULT_HASHES=4
 DEFAULT_TUN_IFACE="csqtt0"
 DEFAULT_TUN_MTU=1300
