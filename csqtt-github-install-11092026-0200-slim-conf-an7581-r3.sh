@@ -546,7 +546,7 @@ write_slim_config() {
 # Конфиг источникится обёрткой csqtt-run.sh ДО дефолтов, раскомментируйте строку (снимите #), чтобы override.
 PEER="$PEER_INPUT"
 PASSWORD="$PASSWORD_INPUT"
-HASHES=$HASHES
+# HASHES=$HASHES
 WORKERS=$WORKERS
 TUN_IFACE="${TUN_IFACE_INPUT:-$DEFAULT_TUN_IFACE}"
 TUN_MTU="${TUN_MTU_INPUT:-$DEFAULT_TUN_MTU}"
