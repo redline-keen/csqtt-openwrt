@@ -272,10 +272,10 @@ detect_platform() {
 detect_arch() {
   ARCH_RAW=$(uname -m 2>/dev/null || echo unknown)
   case "$ARCH_RAW" in
-    aarch64|arm64)  CSQTT_ARCH="aarch64"; ASSET_PREFIX="csqtt-client-aarch64-" ;;
-    mips|mipsel)   CSQTT_ARCH="mipsel";  ASSET_PREFIX="csqtt-client-mipsel-" ;;
-    armv7l|armv6l)  CSQTT_ARCH="armv7";   ASSET_PREFIX="csqtt-client-armv7-"  ;;
-    x86_64)         CSQTT_ARCH="x86_64"; ASSET_PREFIX="csqtt-client-x86_64-" ;;
+    aarch64|arm64)  CSQTT_ARCH="aarch64"; ASSET_PREFIX="csqtt-client-aarch64" ;;
+    mips|mipsel)   CSQTT_ARCH="mipsel";  ASSET_PREFIX="csqtt-client-mipsel" ;;
+    armv7l|armv6l)  CSQTT_ARCH="armv7";   ASSET_PREFIX="csqtt-client-armv7"  ;;
+    x86_64)         CSQTT_ARCH="x86_64"; ASSET_PREFIX="csqtt-client-x86_64" ;;
     *)              CSQTT_ARCH="";        ASSET_PREFIX="" ;;
   esac
   log "архитектура: uname=$ARCH_RAW → csqtt_arch=${CSQTT_ARCH:-НЕИЗВЕСТНА}"
