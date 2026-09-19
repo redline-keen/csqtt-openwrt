@@ -97,7 +97,7 @@ CSQTT_MIHOMO_DIR=""       # каталог Mihomo; по умолч. /etc/mihomo 
 CSQTT_LINK=""
 WORKERS_PER_HASH=27
 WORKERS_STEP=9
-MAX_HASHES=6
+MAX_HASHES=4
 
 # ── разбор аргументов ────────────────────────────────────────────────────────
 while [ $# -gt 0 ]; do
