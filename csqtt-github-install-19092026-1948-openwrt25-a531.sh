@@ -3,18 +3,6 @@
 # CSQTT 2.1.9 — установка клиентского бинарника с GitHub на роутер OpenWrt
 # (включая OpenWrt 25.x) с Авторежимом ВК (auto_js), пулом хешей
 # и суточной ротацией (один хеш в сутки, окно 09:30–15:10, случайный порядок).
-# Это установщик под сборку 19092026-1651-airoha-pool-rotate-a53:
-#   статический aarch64-musl бинарь для AN7581 / AN7583 (ARMv8.0 Cortex-A53),
-#   собран с -C target-cpu=cortex-a53 (+crt-static), чтобы НЕ генерировать
-#   LSE/SVE/dotprod в код Rust (проверено дизассемблером: 0 таких инструкций
-#   в програмном коде; остаточные — только в runtime-диспетчизируемых блобах
-#   aws-lc-rs/ring, на A53 не исполняются).
-#   SHA256: aec455132f0bf0e6c0a26a35e4ae3292ad0af18dd2e81d8c824cda82f06ebb1c.
-#   Имя ассета: csqtt-client-aarch64-openwrt25-AN7581-19092026-1651-pool-rotate-a53
-#   Ревизия установщика 1708: лог клиента пишется в $CSQTT_DIR/csqtt-client.log
-#     (обёртка редиректит stdout/stderr в файл; LOG_FILE, обрезка 1 МБ watchdog'ом
-#     и финальная подсказка указывают на тот же файл — прежняя ветка писала в
-#     procd/logread и путала csqtt.log с csqtt-client.log). Сам бинарь не менялся.
 #   Ревизия установщика 1948: добавлена строгая валидация VK-токена
 #     (vk_token_is_valid + цикл переопроса) и csqtt-ссылки (цикл, пока есть
 #     host/peer/password); urldecode переписана на POSIX (bash-подстроки ${s:i:n}
@@ -30,12 +18,8 @@
 # каталог установки — /etc/csqtt, mihomo — /etc/mihomo. Entware/Keenetic не
 # используется (для Keenetic/Entware есть отдельный универсальный установщик).
 #
-# Использование:
-#   ./csqtt-github-install.sh 'csqtt://connect?...' [опции]
-#   sh csqtt-github-install.sh --repo ВАШ_ЛОГИН/ВАШ_РЕПО ...
-#
 # Опции:
-#   --repo OWNER/REPO     GitHub-репозиторий с бинарниками (по умолч. amurcanov/csqtt)
+#   --repo OWNER/REPO     GitHub-репозиторий с бинарниками (по умолч. redline-keen/csqtt-openwrt)
 #   --tag TAG             тег релиза (по умолч. последний)
 #   --local-bin ПУТЬ      не скачивать, использовать локальный файл
 #   --vk-token ТОКЕН      VK access token (иначе скрипт спросит интерактивно)
@@ -80,9 +64,7 @@
 
 set -u
 
-CSQTT_REPO="redline-keen/csqtt-openwrt"   # ← поменяйте на свой репозиторий, если выложили
-                               #   роутерные бинарники в свой GitHub-релиз
-                               #   (оттуда же берётся csqtt-config.yaml для mihomo)
+CSQTT_REPO="redline-keen/csqtt-openwrt"
 CSQTT_TAG="0.5"
 CSQTT_LOCAL_BIN=""
 CSQTT_VK_TOKEN=""
@@ -415,7 +397,7 @@ if [ -z "$CSQTT_MIHOMO_CONF" ]; then
     while true; do
         printf 'Загрузить csqtt-config.yaml для mihomo?\n'
         printf ' 1) Скачать config.yaml и разместить в %s\n' "$MIHOMO_DIR"
-        printf ' 2) Не скачивать — настроить конфиг самостоятельно\n'
+        printf ' 2) Не скачивать — долго мучаться и настроить конфиг самостоятельно\n'
         printf 'Выберите пункт [1-2] (Enter = 1): '
         read -r MIHOMO_CHOICE || MIHOMO_CHOICE=""
         case "$MIHOMO_CHOICE" in
