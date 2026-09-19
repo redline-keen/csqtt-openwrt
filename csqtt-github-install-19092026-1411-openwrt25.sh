@@ -64,7 +64,7 @@ set -u
 CSQTT_REPO="redline-keen/csqtt-openwrt"   # ← поменяйте на свой репозиторий, если выложили
                                #   роутерные бинарники в свой GitHub-релиз
                                #   (оттуда же берётся csqtt-config.yaml для mihomo)
-CSQTT_TAG="0.1"
+CSQTT_TAG="0.4"
 CSQTT_LOCAL_BIN=""
 CSQTT_VK_TOKEN=""
 CSQTT_HASHES=""
@@ -73,7 +73,7 @@ CSQTT_START=1
 CSQTT_ROTATE=1
 CSQTT_WATCHDOG=1
 CSQTT_MIHOMO_CONF=""      # "" = спросить; yes/no после разбора
-CSQTT_MIHOMO_CONF_URL=""
+CSQTT_MIHOMO_CONF_URL="https://raw.githubusercontent.com/redline-keen/csqtt-openwrt/refs/heads/main/openwrt-csqtt-config.yaml"
 CSQTT_LINK=""
 WORKERS_PER_HASH=27
 WORKERS_STEP=9
@@ -110,7 +110,7 @@ INIT_DIR="/etc/init.d"
 INIT_SCRIPT="$INIT_DIR/csqtt"
 LOG_FILE="$CSQTT_DIR/csqtt.log"
 PID_FILE="/var/run/csqtt.pid"
-MIHOMO_DIR="/etc/mihomo"
+MIHOMO_DIR="/opt/clash"
 MIHOMO_CONF_FILE="$MIHOMO_DIR/config.yaml"
 CRON_FILE="/etc/crontabs/root"
 mkdir -p "$CSQTT_DIR" "$INIT_DIR" 2>/dev/null || die "нет прав на запись (запускайте под root)"
