@@ -253,7 +253,7 @@ set -- "$DIR/csqtt-client" \
     --peer "$PEER" \
     --password "$PASSWORD" \
     --device-id "$DEVICE_ID" \
-    -n "$WORKERS" \
+    --workers "$WORKERS" \
     --listen "$LISTEN" \
     --fingerprint "$FINGERPRINT" \
     --client-ids "$CLIENT_IDS" \
@@ -262,7 +262,7 @@ set -- "$DIR/csqtt-client" \
     --captcha-mode "$CAPTCHA_MODE"
 
 if [ -n "${HASHES_COUNT:-}" ]; then
-    set -- "$@" --hashes "$HASHES_COUNT"
+    set -- "$@" --hashes-count "$HASHES_COUNT"
 fi
 
 if [ -n "$TUN_IFACE" ]; then
