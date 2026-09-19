@@ -57,8 +57,18 @@ case "$(uname -m)" in
 esac
 log "Архитектура: $ARCH_KEY ($(uname -m)) · стиль инициализации: $INIT_STYLE"
 
-# ── 3. получение бинарника ──────────────────────────────────────────────────
+# ── 3. получение и замена бинарника ─────────────────────────────────────────
 BIN_PATH="$CSQTT_DIR/csqtt-client"
+
+# Остановка работающего процесса перед замене файла
+if pidof csqtt-client >/dev/null 2>&1; then
+    log "Обнаружен запущенный csqtt-client. Остановка процесса..."
+    killall -9 csqtt-client 2>/dev/null
+    sleep 1
+fi
+
+# Удаление старого бинарника для чистой замены
+[ -f "$BIN_PATH" ] && rm -f "$BIN_PATH"
 
 fetch() {
     if command -v curl >/dev/null 2>&1; then
@@ -100,7 +110,7 @@ else
         /*) asset_url="https://github.com$asset_url" ;;
     esac
     [ -n "$asset_url" ] || die "Файл csqtt-client-$ARCH_KEY не найден в релизе"
-    log "Скачиваю: $asset_url"
+    log "Скачиваю и заменяю бинарник: $asset_url"
     fetch "$asset_url" "$BIN_PATH" || die "скачивание не удалось"
 fi
 verify_bin "$BIN_PATH"
@@ -341,11 +351,11 @@ if [ "$CSQTT_START" = "1" ]; then
     "$INIT_SCRIPT" restart
 fi
 
-log "Готово! Ватчдог работает каждые 2 мин. Деинсталлятор доступен по команде: csqtt-uninstall"
+log "Готово! Бинарник обновлен. Ватчдог каждые 2 мин. Деинсталлятор: csqtt-uninstall"
 exit 0
 ```<FollowUp>
 
 <ElicitationsGroup>
-Удалось ли успешно установить и запустить скрипт?
+Удалось ли успешно перезаписать бинарник и перезапустить службу?
 </ElicitationsGroup>
 </FollowUp>
