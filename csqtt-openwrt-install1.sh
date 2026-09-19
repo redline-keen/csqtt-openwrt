@@ -381,20 +381,20 @@ log "VK-токен сохранён в $VK_TOKEN_FILE (права 600; меня�
 # ── 6. параметры пула: хеши и воркеры ───────────────────────────────────────
 # хеши: 1..6
 if [ -z "$CSQTT_HASHES" ]; then
-    printf 'Хешей в пуле [1..6] (Enter = 4): '
+    printf 'Хешей в пуле [1..4] (Enter = 4): '
     read -r CSQTT_HASHES
 fi
 case "$CSQTT_HASHES" in
     "") CSQTT_HASHES=4 ;;
-    *[!0-9]*) die "число хешей должно быть целым 1..6: '$CSQTT_HASHES'" ;;
+    *[!0-9]*) die "число хешей должно быть целым 1..4: '$CSQTT_HASHES'" ;;
     *) [ "$CSQTT_HASHES" -ge 1 ] && [ "$CSQTT_HASHES" -le $MAX_HASHES ] \
         || die "число хешей должно быть 1..$MAX_HASHES: $CSQTT_HASHES" ;;
 esac
 
-# воркеры: 9..162, максимум хеши×27, кратно 9
+# воркеры: 9..108, максимум хеши×27, кратно 9
 hash_cap=$((CSQTT_HASHES * WORKERS_PER_HASH))
 if [ -z "$CSQTT_WORKERS" ]; then
-    printf 'Воркеров [9..162, максимум %d для %d хешей] (Enter = максимум): ' "$hash_cap" "$CSQTT_HASHES"
+    printf 'Воркеров [9..108, максимум %d для %d хешей] (Enter = максимум): ' "$hash_cap" "$CSQTT_HASHES"
     read -r CSQTT_WORKERS
 fi
 case "$CSQTT_WORKERS" in
@@ -425,7 +425,7 @@ if [ -z "$CSQTT_MIHOMO_CONF" ]; then
     while true; do
         printf 'Загрузить csqtt-config.yaml для mihomo?\n'
         printf ' 1) Скачать config.yaml и разместить в %s\n' "$MIHOMO_DIR"
-        printf ' 2) Не скачивать — настроить конфиг самостоятельно\n'
+        printf ' 2) Не скачивать — помучаться и настроить конфиг самостоятельно\n'
         printf 'Выберите пункт [1-2] (Enter = 1): '
         read -r MIHOMO_CHOICE || MIHOMO_CHOICE=""
         case "$MIHOMO_CHOICE" in
