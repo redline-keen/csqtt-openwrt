@@ -408,7 +408,7 @@ log "Хешей: $CSQTT_HASHES · воркеров: $CSQTT_WORKERS ($((CSQTT_WOR
 # сохраняется бэкапом *.csqtt-bak (однократно); скачивание атомарно —
 # при сбое сети существующий конфиг mihomo не портится.
 [ -n "$CSQTT_MIHOMO_CONF_URL" ] && CSQTT_MIHOMO_CONF="yes"
-CSQTT_CONFIG_URL="https://raw.githubusercontent.com/$CSQTT_REPO/main/csqtt-config.yaml"
+CSQTT_CONFIG_URL="https://raw.githubusercontent.com/$CSQTT_REPO/main/openwrt-csqtt-config.yaml"
 
 if [ -z "$CSQTT_MIHOMO_CONF" ]; then
     # интерактивный выбор: 1) скачать 2) пропустить — каждый пункт на своей строке
