@@ -71,7 +71,7 @@ set -u
 CSQTT_REPO="redline-keen/csqtt-openwrt"   # ← поменяйте на свой репозиторий, если выложили
                                #   роутерные бинарники в свой GitHub-релиз
                                #   (оттуда же берётся csqtt-config.yaml для mihomo)
-CSQTT_TAG="0.1"
+CSQTT_TAG="0.5"
 CSQTT_LOCAL_BIN=""
 CSQTT_VK_TOKEN=""
 CSQTT_HASHES=""
