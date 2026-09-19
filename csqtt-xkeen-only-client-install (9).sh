@@ -2,8 +2,8 @@
 
 set -u
 
-CSQTT_REPO="redline-keen/csqtt-xkeen"
-CSQTT_TAG="2.0"
+CSQTT_REPO="redline-keen/csqtt-openwrt"
+CSQTT_TAG="0.3"
 CSQTT_LOCAL_BIN=""
 CSQTT_VK_TOKEN=""
 CSQTT_HASHES=""
